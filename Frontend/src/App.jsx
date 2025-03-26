@@ -20,6 +20,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import ForgotPasswordCard from './components/ForgotPasswordCard';
+import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
 
 
 
@@ -28,17 +30,17 @@ import ForgotPasswordCard from './components/ForgotPasswordCard';
 
 function App() {
   const [isTeacher, setIsTeacher] = useState(false);
-  
+
   useEffect(() => {
     const token = Cookies.get('token');
-    if(token) {
+    if (token) {
       try {
         const decoded = jwtDecode(token);
         // Set the fullName from token data
-        if(decoded.role === 'student'){
-            setIsTeacher(false);
-        }else{
-            setIsTeacher(true);
+        if (decoded.role === 'student') {
+          setIsTeacher(false);
+        } else {
+          setIsTeacher(true);
         }
       } catch (error) {
         setIsTeacher(false);
@@ -60,15 +62,15 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path='/testimonial' element={<Testimonial />} />
-            <Route path='/pricing' element={<Pricing/>}/>
+            <Route path='/pricing' element={<Pricing />} />
             <Route path='/test' element={
               <ProtectedRoute>
                 <Test />
               </ProtectedRoute>
             } />
-            <Route path='/signin' element={<Signin />}/>
-            <Route path='/signup' element={<Signup />}/>
-            <Route path='/about' element={<About />}/>
+            <Route path='/signin' element={<Signin />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/about' element={<About />} />
             <Route path='/create-test' element={
               <ProtectedRoute requiredRole="teacher">
                 <CreateTest />
@@ -79,8 +81,18 @@ function App() {
                 <Result />
               </ProtectedRoute>
             } />
-            <Route path='/error' element={<Error />}/>
-            <Route path='*' element={<Error />}/>
+            <Route path='/profile' element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } />
+            <Route path='/edit' element={
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            } />
+            <Route path='/error' element={<Error />} />
+            <Route path='*' element={<Error />} />
           </Routes>
         </main>
         <Footer />

@@ -224,6 +224,9 @@ function Navbar() {
           <Link to="/about" className="text-gray-600 hover:text-blue-600">
             About
           </Link>
+          <Link to='/profile' className="text-gray-600 hover:text-blue-600">
+          Profile
+          </Link>
         </div>
 
         {/* Right Side (Login & Signup) - Updated styling */}
@@ -261,7 +264,7 @@ function Navbar() {
               </div>
               <button
                 onClick={handleSignOut}
-                className="px-4 py-2 rounded bg-blue-600 text-white transition-colors duration-200 ripple-container"
+                className="px-4 py-2 rounded bg-blue-600 text-white transition-colors duration-200 ripple-container hover:bg-blue-700"
               >
                 Sign Out
               </button>
